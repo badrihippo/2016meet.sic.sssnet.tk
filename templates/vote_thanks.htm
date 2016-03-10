@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}SIC Meetup - Vote Finished{% endblock %}
 {% block content %}
-<p>Thanks for voting!</p>
+<h1>Thanks for voting!</h1>
+<p>Your vote has been recorded in our database. If you know any more SSSians, consider sending them this website link so that they can try to come too. Good luck, and we hope you manage to attend the meeting!</p>
+<p><em>Coming soon: </em> Most popularly voted date. Check back in a few days to see if it's up!</p>
+
+<a href="{{ url_for('index') }}" class="button">Go back to the main page</a>
 
 {% endblock %}
