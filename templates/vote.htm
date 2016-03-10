@@ -32,7 +32,7 @@
       <p>Now comes the main part! Please select all the dates in April <b>and</b> May when it will be <b>convenient</b> for you to come...
     <p>{{ form.good_dates.label }}<input data-date-format="dd-mm-yyyy" data-date-multidate="true" data-date-start-date="01-04-2016" data-date-end-date="30-05-2016"  data-provide="datepicker" id="good_dates" name="good_dates" type="text" value="" class="u-full-width"></p>
     <p>...and all the days when you will definitely <b>not</b> be able to come</p>
-    <p>{{ form.bad_dates.label }}<input data-date-format="dd-mm-yyyy" data-date-multidate="true" data-date-start-date="01-04-2016" data-date-end-date="30-05-2016" data-provide="datepicker" id="bad_dates" name="bad_dates" type="text" value="" class="u-full-width"></p>
+    <p>{{ form.bad_dates.label }}<input data-date-format="dd-mm-yyyy" data-date-multidate="true" data-date-start-date="01-04-2016" data-date-end-date="31-05-2016" data-provide="datepicker" id="bad_dates" name="bad_dates" type="text" value="" class="u-full-width"></p>
     {% if form.good_dates.errors %}<ul></ul>{% for e in form.good_dates.errors %}<li>e</li>{% endfor %}</ul>{% endif %}
     {% if form.bad_dates.errors %}<ul></ul>{% for e in form.bad_dates.errors %}<li>e</li>{% endfor %}</ul>{% endif %}
     </div>
