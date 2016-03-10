@@ -1,0 +1,65 @@
+from flask import Flask, render_template, redirect, url_for
+from tinydb import TinyDB, Query
+from flask.ext.wtf import Form
+import wtforms as wtf
+
+app = Flask(__name__)
+if not app.config.has_key('SECRET_KEY') or app.config['SECRET_KEY'] is None:
+    app.config['SECRET_KEY'] = 'secret'
+app.config['DEBUG'] = True
+
+class DateListField(wtf.Field):
+    widget = wtf.widgets.TextInput()
+
+    # TODO: Make it work with/validate dates instead of just plaintext
+    def _value(self):
+        if self.data:
+            return u', '.join(self.data)
+        else:
+            return u''
+
+    def process_formdata(self, valuelist):
+        if valuelist:
+            self.data = [x.strip() for x in valuelist[0].split(',')]
+        else:
+            self.data = []
+
+class DateVoteForm(Form):
+    name = wtf.StringField('Name', validators=[wtf.validators.Required()])
+    shop = wtf.StringField('Shop name', validators=[wtf.validators.Required()])
+    email = wtf.StringField('Email ID')
+
+    good_dates = DateListField()
+    bad_dates = DateListField()
+
+db = TinyDB('sic2016meet.json')
+dv = db.table('date_votes')
+
+@app.route('/')
+def index():
+    form = DateVoteForm()
+    form.action = url_for('vote')
+    return render_template('index.htm', form=form)
+
+@app.route('/vote/', methods=['GET', 'POST'])
+def vote():
+    form = DateVoteForm()
+    if form.validate_on_submit():
+        v = {}
+        v['name'] = form.name.data
+        v['shop'] = form.shop.data
+        v['email'] = form.email.data
+        v['good_dates'] = form.good_dates.data
+        v['bad_dates'] = form.bad_dates.data
+
+        dv.insert(v)
+        return redirect(url_for('vote_thanks'))
+    return render_template('vote.htm', form=form)
+
+@app.route('/vote/thanks/')
+def vote_thanks():
+    # TODO: get most popular date
+    return render_template('vote_thanks.htm')
+
+if __name__ == '__main__':
+    app.run()
