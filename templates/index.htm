@@ -1,12 +1,82 @@
 {% extends 'base.html' %}
+{% block extracss %}
+<style type="text/css">
+  .section.intro {
+    background-color: #94DDF4;
+    color: #0000AE;
+  }
+  .section.intro h1,
+  .section.intro p {
+    margin-top: 2em;
+    margin-bottom: 1em;
+  }
+  .section.slight-problem,
+  .section.problem-list,
+  .section.our-solution
+  {
+    background-color: #545454;
+    color: #FFFFFF;
+  }
+  .section.sss-birthday {
+    background-color: #F7B041;
+    color: #000000;
+  }
+  .section.this-is-your-chance {
+    background-color: #E4FFE4;
+    color: #408540
+  }
+</style>
+{% endblock %}
 {% block body %}
-<section class="header">
-    <h1 class="title">SSS Meetup 2016</h1>
+<section class="section intro">
+    <h1 class="title">One place. All of SSS.</h2>
+    <i class="fa fa-globe landing-large-icon"> </i>
+    <p class="section-description">SSS originally started as a small game between a few friends. Now, as you know, it's become a whole lot more than that. The SSS Idea Circuit is planning to organise a meeting of all SSSians. It will take place in Bengaluru some time in April or May, but we need your help to choose a date.</p>
+    <a href="{{ url_for('vote') }}" class="button">Vote for the date now!</a>
 </section>
-
-<p>Welcome to the website!</p>
-<p>On second thoughts, it's not yet finished, so you're actually not welcome just yet. But feel free to come back soon!</p>
-<p>The form can be found below, though.</p>
-
-{% include 'vote_form.htm' %}
+<div class="row section slight-problem">
+  <div class="twelve columns">
+    <h3>a slight problem...</h3>
+  </div>
+</div>
+<div class="row section problem-list">
+  <div class="one-third column">
+    <i class="fa fa-users landing-large-icon"></i>
+    <p>SSS is no longer limited to groups of people in close proximity to each other</p>
+  </div>
+  <div class="one-third column">
+    <i class="fa fa-phone landing-large-icon"></i>
+    <p>Exchanges can now take place on the phone, online, or via the post</p>
+  </div>
+  <div class="one-third column">
+    <i class="fa fa-user-secret landing-large-icon"></i>
+    <p>A number of SSSians have never spoken face-to-face!</p>
+  </div>
+</div>
+<div class="row section our-solution">
+  <div class="twelve columns">
+    <h3>...and our solution!</h3>
+  </div>
+</div>
+<div class="row section sss-birthday">
+  <div class="one column">
+    <i class="fa fa-calendar landing-large-icon"></i>
+  </div>
+  <div class="ten columns birthday-text">
+    <h5>SSS is turning 7 this year. We've come a long way&#x2014;and what better way to celebrate than with the entire SSS population?</h5>
+  </div>
+</div>
+<div class="row section this-is-your-chance">
+  <div class="twelve columns">
+    <p class="section-description">This is your chance to put faces behind the names of people you've never met, get some publicity and customers for your shop, find inspiration, discuss ideas, make new friends or spend time with the old ones. Register now, and help us reach our goal of bringing everyone in SSS together, for once!</p>
+  </div>
+</div>
+<div class="row section date-selection">
+  <div class="twelve columns">
+    <h2>When is the event?</h2>
+    <p class="section-description">We want to make this event accessible to as many people as possible&#x2014;which is why <strong>you</strong> need to help us choose the date! Tell us which dates would work best for you, and we'll try to organize the event in a way that works out best for all.</p>
+    <a href="{{ url_for('vote') }}" class="button">Vote for the date now!</a>
+  </div>
+</div>
+</div>
 {% endblock %}
