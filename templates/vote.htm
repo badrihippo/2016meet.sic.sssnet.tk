@@ -1,8 +1,49 @@
 {% extends 'base.html' %}
 {% block title %}SIC Meetup - Vote for the Date!{% endblock %}
+{% block extracss %}
+<link href="{{ url_for('static', filename='css/bootstrap-datepicker.standalone.min.css') }}" rel="stylesheet" />
+{% endblock %}
 {% block content %}
-<p>Help us choose a date!</p>
+<h1>SSS Meetup 2016 - Pick a Date</h1>
+<p>This is the first SSSians' meeting ever, and we want to make sure everybody can come. The event is to take place in April or May, but <em>when</em> in that time will depend on you. Please help us pick a date by filling the form below!</p>
 
-{% include 'vote_form.htm'%}
+<form action="{{ url_for('vote') }}" method="post">
+  {{ form.csrf_token }}
+  <div class="row">
+    <div class="four columns">
+      {{ form.name.label}}{{ form.name(class="u-full-width") }}
+      {% if form.name.errors %}<ul></ul>{% for e in form.name.errors %}<li>e</li>{% endfor %}</ul>{% endif %}
+    </div>
+    <div class="four columns">
+      {{ form.shop.label}}{{ form.shop(class="u-full-width") }}
+      {% if form.shop.errors %}<ul></ul>{% for e in form.shop.errors %}<li>e</li>{% endfor %}</ul>{% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="four columns">
+      {{ form.email.label}}{{ form.email(class="u-full-width") }}
+      {% if form.email.errors %}<ul></ul>{% for e in form.email.errors %}<li>e</li>{% endfor %}</ul>{% endif %}
+    </div>
+    <div class="four columns">Email is optional - we will use it to inform you when the date is fixed</div>
+  </div>
+  <div class="row">
+    <div class="eight columns">
+      <h3>Date selection</h3>
+      <p>Now comes the main part! Please select all the dates in April <b>and</b> May when it will be <b>convenient</b> for you to come...
+    <p>{{ form.good_dates.label }}<input data-date-format="dd-mm-yyyy" data-date-multidate="true" data-date-start-date="01-04-2016" data-date-end-date="30-05-2016"  data-provide="datepicker" id="good_dates" name="good_dates" type="text" value="" class="u-full-width"></p>
+    <p>...and all the days when you will definitely <b>not</b> be able to come</p>
+    <p>{{ form.bad_dates.label }}<input data-date-format="dd-mm-yyyy" data-date-multidate="true" data-date-start-date="01-04-2016" data-date-end-date="30-05-2016" data-provide="datepicker" id="bad_dates" name="bad_dates" type="text" value="" class="u-full-width"></p>
+    {% if form.good_dates.errors %}<ul></ul>{% for e in form.good_dates.errors %}<li>e</li>{% endfor %}</ul>{% endif %}
+    {% if form.bad_dates.errors %}<ul></ul>{% for e in form.bad_dates.errors %}<li>e</li>{% endfor %}</ul>{% endif %}
+    </div>
+  </div>
+  
+  
+  <input type="submit" value="Vote" />
+</form>
 
+{% endblock %}
+{% block extrajs %}
+<script type="text/javascript" src="{{ url_for('static', filename='jquery/jquery-2.1.4.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap-datepicker.min.js') }}"></script>
 {% endblock %}
