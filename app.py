@@ -1,12 +1,17 @@
+import os
 from flask import Flask, render_template, redirect, url_for
 from tinydb import TinyDB, Query
 from flask.ext.wtf import Form
 import wtforms as wtf
 
 app = Flask(__name__)
-if not app.config.has_key('SECRET_KEY') or app.config['SECRET_KEY'] is None:
+try:
+    app.config.from_pyfile('instance/config.py')
+except:
+    # Set defaults
     app.config['SECRET_KEY'] = 'secret'
-app.config['DEBUG'] = True
+    this_dir = os.path.dirname(os.path.realpath(__file__))
+    app.config['TINYDB_DB_PATH'] = os.path.join(this_dir, 'sic2016meet.json')
 
 class DateListWidget(wtf.widgets.TextInput):
     def __init__(self):
@@ -56,7 +61,7 @@ class DateVoteForm(Form):
     good_dates = DateListField()
     bad_dates = DateListField()
 
-db = TinyDB('sic2016meet.json')
+db = TinyDB(app.config['TINYDB_DB_PATH'])
 dv = db.table('date_votes')
 
 @app.route('/')
