@@ -17,8 +17,16 @@
   </head>
   <body>
     {% block body %}
-    <div class="container">
+    <div class="container wrapper">
     {% block content %}{% endblock %}
+    <div class="push"></div>
+    </div>
+    <div class="container">
+      <div class="footer">
+        <hr>
+        <p>&copy; SSS Idea Circuit, 2016. This is an SSS website. <a href="http://sssnet.tk/">Learn more about SSS</a></p>
+        <p>Website powered <a href="http://flask.pocoo.org/">Flask</a>, <a href="http://getskeleton.com">Skeleton</a> and <a href="http://tinydb.readthedocs.org/">TinyDB</a>.</p>
+      </div>
     </div>
     {% endblock %}
     {% block extrajs %}{% endblock %}

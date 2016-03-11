@@ -20,3 +20,32 @@
   font-size: 4em;
   margin: 10px;
 }
+
+/*
+
+Sticky Footer by Ryan Fait
+http://ryanfait.com/
+
+*/
+html, body {
+  height: 100%;
+}
+.wrapper {
+  min-height: 100%;
+  margin: 0 auto -155px; /* the bottom margin is the negative value of the footer's height */
+}
+
+.footer, .push {
+  height: 155px; /* .push must be the same height as .footer */
+}
+
+/* More footer stying */
+.footer {
+  font-size: 1em;
+  line-height: 1;
+}
+.footer p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
