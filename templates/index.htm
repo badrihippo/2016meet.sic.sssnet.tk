@@ -18,8 +18,8 @@
     color: #FFFFFF;
   }
   .section.sss-birthday {
-    background-color: #F7B041;
-    color: #000000;
+    background-color: #AD0000;
+    color: #FFFFFF;
   }
   .section.this-is-your-chance {
     background-color: #E4FFE4;
@@ -34,6 +34,14 @@
     <p class="section-description">SSS originally started as a small game between a few friends. Now, as you know, it's become a whole lot more than that. The SSS Idea Circuit is planning to organise a meeting of all SSSians. It will take place in Bengaluru some time in April or May, but we need your help to choose a date.</p>
     <a href="{{ url_for('vote') }}" class="button">Vote for the date now!</a>
 </section>
+<div class="row section event-details">
+  <div class="twelve columns">
+    <h4><i class="fa fa-map-marker fa-lg"> </i> Bengaluru, Summer of 2016</h4>
+    <p class="section-description"><em>All SSSians invited</em></p>
+    <p class="section-description">You can bring along any friends and family who might be interested, too!</p>
+    <a href="{{ url_for('vote') }}" class="button">Help us pick a date</a>
+  </div>
+</div>
 <div class="row section slight-problem">
   <div class="twelve columns">
     <h3>a slight problem...</h3>
@@ -68,7 +76,7 @@
 </div>
 <div class="row section this-is-your-chance">
   <div class="twelve columns">
-    <p class="section-description">This is your chance to put faces behind the names of people you've never met, get some publicity and customers for your shop, find inspiration, discuss ideas, make new friends or spend time with the old ones. Register now, and help us reach our goal of bringing everyone in SSS together, for once!</p>
+    <p class="section-description"><em>This is your chance to put faces behind the names of people you've never met, get some publicity and customers for your shop, find inspiration, discuss ideas, make new friends or spend time with the old ones. Register now, and help us reach our goal of bringing everyone in SSS together, for once!</em></p>
   </div>
 </div>
 <div class="row section date-selection">
@@ -78,5 +86,8 @@
     <a href="{{ url_for('vote') }}" class="button">Vote for the date now!</a>
   </div>
 </div>
+<div class="row section landing-footer">
+  <p>&copy; SSS Idea Circuit, 2016. This is an SSS website. <a href="http://sssnet.tk/">Learn more about SSS</a></p>
+  <p>Website powered <a href="http://flask.pocoo.org/">Flask</a>, <a href="http://getskeleton.com">Skeleton</a> and <a href="http://tinydb.readthedocs.org/">TinyDB</a></p>
 </div>
 {% endblock %}
