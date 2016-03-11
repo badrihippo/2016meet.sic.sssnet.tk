@@ -78,6 +78,7 @@ def vote():
         v['email'] = form.email.data
         v['good_dates'] = form.good_dates.data
         v['bad_dates'] = form.bad_dates.data
+        v['timestamp'] = datetime.now().isoformat()
 
         dv.insert(v)
         return redirect(url_for('vote_thanks'))
