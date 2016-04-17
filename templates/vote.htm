@@ -22,17 +22,17 @@
   <div class="row">
     <div class="four columns">
       {{ form.name.label}}{{ form.name(class="u-full-width") }}
-      {% if form.name.errors %}<ul></ul>{% for e in form.name.errors %}<li>e</li>{% endfor %}</ul>{% endif %}
+      {% if form.name.errors %}<ul></ul>{% for e in form.name.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
     </div>
     <div class="four columns">
       {{ form.shop.label}}{{ form.shop(class="u-full-width") }}
-      {% if form.shop.errors %}<ul></ul>{% for e in form.shop.errors %}<li>e</li>{% endfor %}</ul>{% endif %}
+      {% if form.shop.errors %}<ul></ul>{% for e in form.shop.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
     </div>
   </div>
   <div class="row">
     <div class="four columns">
       {{ form.email.label}}{{ form.email(class="u-full-width") }}
-      {% if form.email.errors %}<ul></ul>{% for e in form.email.errors %}<li>e</li>{% endfor %}</ul>{% endif %}
+      {% if form.email.errors %}<ul></ul>{% for e in form.email.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
     </div>
     <div class="four columns">Email is optional - we will use it to inform you when the date is fixed</div>
   </div>
@@ -47,8 +47,8 @@
     <p>{{ form.bad_dates.label }}</p>
     <div id="datepicker-bad" data-date-format="dd-mm-yyyy" data-date-multidate="true" data-date-start-date="01-04-2016" data-date-end-date="31-05-2016" data-provide="datepicker"></div>
     <p><input id="bad_dates" name="bad_dates" type="text" value="" class="u-full-width" /></p>
-    {% if form.good_dates.errors %}<ul></ul>{% for e in form.good_dates.errors %}<li>e</li>{% endfor %}</ul>{% endif %}
-    {% if form.bad_dates.errors %}<ul></ul>{% for e in form.bad_dates.errors %}<li>e</li>{% endfor %}</ul>{% endif %}
+    {% if form.good_dates.errors %}<ul></ul>{% for e in form.good_dates.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+    {% if form.bad_dates.errors %}<ul></ul>{% for e in form.bad_dates.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
     </div>
   </div>
   
