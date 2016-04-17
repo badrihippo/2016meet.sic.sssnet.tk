@@ -40,6 +40,7 @@ class DateListField(wtf.Field):
             for v in valuelist:
                 values = v.split(',')
                 for d in values:
+                    if d == '': continue # Ignore blank dates
                     try:
                         # Check for valid date
                         datetime.strptime(d, '%d-%m-%Y')
