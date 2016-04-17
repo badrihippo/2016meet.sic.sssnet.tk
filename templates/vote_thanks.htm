@@ -3,8 +3,18 @@
 {% block content %}
 <h1>Thanks for voting!</h1>
 <p>Your vote has been recorded in our database. If you know any more SSSians, consider sending them this website link so that they can try to come too. Good luck, and we hope you manage to attend the meeting!</p>
-<p><em>Coming soon: </em> Most popularly voted date. Check back in a few days to see if it's up!</p>
-
+<div class="u-full-width" style="text-align: center;">
+  <h2><em>And, the most popular {% if top_dates.__len__() == 1 %}date is{% else %}dates are{% endif %}&hellip;</em></h2>
+  {% if top_dates.__len__() == 0 -%}
+  <p>No votes yet!</p>
+  {%- else -%}
+  <ul style="list-style-type: none; font-size: 2rem;">
+    {% for date in top_dates -%}
+    <li><i class="fa fa-calendar"></i> {{ date }}</li>
+    {%- endfor %}
+  </ul>
+  {%- endif %}
+</div>
 <a href="{{ url_for('index') }}" class="button">Go back to the main page</a>
 
 {% endblock %}

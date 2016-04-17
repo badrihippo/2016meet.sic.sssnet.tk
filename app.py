@@ -62,6 +62,51 @@ class DateVoteForm(Form):
 db = TinyDB(app.config['TINYDB_DB_PATH'])
 dv = db.table('date_votes')
 
+# Vote checker
+def get_vote_dict():
+    '''
+    Analyze dates from all votes, weight the different dates, and
+    arrange them in a dictionary of the form { date: vote_count }
+    '''
+    good_dates = []
+    bad_dates = []
+    vote_dict = {}
+    for vote in dv.all():
+        if vote['name'] != 'Nobody': # Skip test votes
+            good_dates += vote['good_dates']
+            bad_dates += vote['bad_dates']
+    for d in good_dates:
+        if vote_dict.has_key(d):
+            vote_dict[d] += 1
+        else:
+            vote_dict[d] = 1
+    for d in bad_dates:
+        if vote_dict.has_key(d):
+            vote_dict[d] -= 2 # More weighting for bad-date votes
+        else:
+            vote_dict[d] = -2
+    return vote_dict
+def get_top_dates():
+    '''
+    Returns a list of the most popular dates, according to vote
+    '''
+    vote_dict = get_vote_dict()
+    if len(vote_dict) == 0: return [] # Return if empty dict
+    vote_sizes = []
+    # Invert list to sort by votes
+    vote_density = {}
+    for key, value in vote_dict.items():
+        if not vote_density.has_key(value):
+            vote_density[value] = []
+            vote_sizes.append(value)
+        vote_density[value].append(key)
+    vote_sizes.sort()
+    top_dates = vote_density[vote_sizes[-1]]
+    # Convert date strings to actual dates
+    top_dates_processed = [ datetime.strptime(d, '%d-%m-%Y') for d in top_dates ]
+    top_dates_processed.sort()
+    return top_dates_processed
+
 @app.route('/')
 def index():
     form = DateVoteForm()
@@ -86,8 +131,8 @@ def vote():
 
 @app.route('/vote/thanks/')
 def vote_thanks():
-    # TODO: get most popular date
-    return render_template('vote_thanks.htm')
+    top_dates = [ d.strftime('%d %b %Y') for d in get_top_dates() ]
+    return render_template('vote_thanks.htm', top_dates = top_dates)
 
 if __name__ == '__main__':
     app.run()
