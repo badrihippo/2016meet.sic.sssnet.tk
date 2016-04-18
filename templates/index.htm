@@ -127,6 +127,31 @@
 <script type="text/javascript" src="{{ url_for('static', filename='jquery/jquery-2.1.4.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.stellar.min.js') }}"></script>
 <script type="text/javascript">
-  $(window).stellar();
+  var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+  };
+  // Enable Stellar (parallax) for non-mobile devices only
+  $(document).ready(function(){
+    if( !isMobile.any() ){
+        $(window).stellar();
+    }
+  });
 </script>
 {% endblock %}
