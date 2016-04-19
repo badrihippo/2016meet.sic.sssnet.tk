@@ -13,9 +13,7 @@
 {% endblock %}
 {% block content %}
 <h1>SSS Meetup 2016 - Pick a Date</h1>
-<p>This is the first SSSians' meeting ever, and we want to make sure everybody can come. The event is to take place in April or May, but <em>when</em> in that time will depend on you. Please help us pick a date by filling the form below!</p>
-
-<p><strong>Don't have a shop yet?</strong> You can join SSS and create one now! <a href="http://sssnet.tk">Learn how <i class="fa fa-arrow-right"></i></a></p>
+<p>This is the first SSSians' meeting ever, and we want to make sure everybody can come. The event is set to take place on 4th May 2016. However, if you find that inconvenient, you might still have a chance to get it changed. Simply tell us which dates are convenient in the form below...</p>
 
 <form action="{{ url_for('vote') }}" method="post">
   {{ form.csrf_token }}
@@ -39,13 +37,13 @@
   <div class="row">
     <div class="eight columns">
       <h3>Date selection</h3>
-      <p>Now comes the main part! Please select all the dates in April <b>and</b> May when it will be <b>convenient</b> for you to come...
+      <p>Now comes the main part! Please select all the dates when it will be <b>convenient</b> for you to come...
     <p>{{ form.good_dates.label }}</p>
-    <div id="datepicker-good" data-date-format="dd-mm-yyyy" data-date-multidate="true" data-date-start-date="01-04-2016" data-date-end-date="30-05-2016"  data-provide="datepicker"></div>
+    <div id="datepicker-good" data-date-format="dd-mm-yyyy" data-date-multidate="true" data-date-start-date="01-05-2016" data-date-end-date="31-05-2016"  data-provide="datepicker"></div>
     <p><input id="good_dates" name="good_dates" type="text" value="" class="u-full-width" /></p>
     <p>...and all the days when you will definitely <b>not</b> be able to come</p>
     <p>{{ form.bad_dates.label }}</p>
-    <div id="datepicker-bad" data-date-format="dd-mm-yyyy" data-date-multidate="true" data-date-start-date="01-04-2016" data-date-end-date="31-05-2016" data-provide="datepicker"></div>
+    <div id="datepicker-bad" data-date-format="dd-mm-yyyy" data-date-multidate="true" data-date-start-date="01-05-2016" data-date-end-date="31-05-2016" data-provide="datepicker"></div>
     <p><input id="bad_dates" name="bad_dates" type="text" value="" class="u-full-width" /></p>
     {% if form.good_dates.errors %}<ul></ul>{% for e in form.good_dates.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
     {% if form.bad_dates.errors %}<ul></ul>{% for e in form.bad_dates.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
@@ -54,7 +52,8 @@
   
   <p><i>You can always update your date later by re-sumbitting the form using the same shop name</i></p>
   
-  <input type="submit" value="Vote" />
+  <a href="{{ url_for('index') }}" class="button">Go back</a>
+  <input type="submit" value="Vote" class="button button-primary"/>
 </form>
 
 {% endblock %}
