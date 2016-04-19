@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}SIC Meetup - Registration{% endblock %}
+{% block extracss %}
+<link href="{{ url_for('static', filename='css/bootstrap-datepicker.standalone.min.css') }}" rel="stylesheet" />
+<style type="text/css">
+#datepicker-good table tr td.active {
+  background: #0b0;
+}
+#datepicker-bad table tr td.active {
+  background: #b00;
+}
+</style>
+{% endblock %}
+{% block content %}
+<h1>SSS Meetup 2016 - Registration</h1>
+<p>We're glad to know that you're coming for the Meetup! Don't forget to register so that we are ready for you&hellip;</p>
+
+<p><strong>Don't have a shop yet?</strong> You can join SSS and create one now! <a href="http://sssnet.tk">Learn how <i class="fa fa-arrow-right"></i></a></p>
+
+<form action="{{ url_for('register') }}" method="post">
+  {{ form.csrf_token }}
+  <div class="row">
+    <div class="four columns"{% if form.name.errors %} style="color: red;"{% endif %}>
+      {{ form.name.label}}{{ form.name(class="u-full-width") }}
+      {% if form.name.errors %}<ul style="color: red;">{% for e in form.name.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+    </div>
+    <div class="four columns"{% if form.shop.errors %} style="color: red;"{% endif %}>
+      {{ form.shop.label}}{{ form.shop(class="u-full-width") }}
+      {% if form.shop.errors %}<ul style="color: red;">{% for e in form.shop.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="four columns"{% if form.contact.errors %} style="color: red;"{% endif %}>
+      {{ form.contact.label}}{{ form.contact(class="u-full-width") }}
+      {% if form.contact.errors %}<ul style="color: red;">{% for e in form.contact.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+    </div>
+    <div class="four columns">We will use this contact to send you updates on the meetup. We will not use your contact details after the meetup is over (except perhaps to inform you of the next one).</div>
+  </div>
+  <p><i></i></p>
+  
+  <input type="submit" value="Register" />
+</form>
+
+{% endblock %}

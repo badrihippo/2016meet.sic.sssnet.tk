@@ -60,8 +60,14 @@ class DateVoteForm(Form):
     good_dates = DateListField()
     bad_dates = DateListField()
 
+class NameShopContactForm(Form):
+    name = wtf.StringField('Name', validators=[wtf.validators.Required()])
+    shop = wtf.StringField('Shop name', validators=[wtf.validators.Required()])
+    contact = wtf.StringField('Email or Phone', validators=[wtf.validators.Required()])
+
 db = TinyDB(app.config['TINYDB_DB_PATH'])
 dv = db.table('date_votes')
+db_reg = db.table('registrations')
 
 # Vote checker
 def get_vote_dict():
@@ -110,7 +116,7 @@ def get_top_dates():
 
 @app.route('/')
 def index():
-    form = DateVoteForm()
+    form = NameShopContactForm()
     form.action = url_for('vote')
     return render_template('index.htm', form=form)
 
@@ -134,6 +140,26 @@ def vote():
 def vote_thanks():
     top_dates = [ d.strftime('%d %b %Y') for d in get_top_dates() ]
     return render_template('vote_thanks.htm', top_dates = top_dates)
+
+@app.route('/register/', methods=['GET', 'POST'])
+def register():
+    form = NameShopContactForm()
+    if form.validate_on_submit():
+        u = {}
+        u['name'] = form.name.data
+        u['shop'] = form.shop.data
+        u['contact'] = form.contact.data
+        u['timestamp'] = datetime.now().isoformat()
+
+        db_reg.insert(u)
+        return redirect(url_for('register_thanks'))
+    return render_template('register.htm', form=form)
+
+@app.route('/register/thanks/')
+def register_thanks():
+    return render_template('register_thanks.htm')
+
+
 
 if __name__ == '__main__':
     app.run()
