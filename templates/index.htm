@@ -25,8 +25,7 @@
     color: #FFFFFF;
   }
   .section.slight-problem,
-  .section.problem-list,
-  .section.our-solution
+  .section.problem-list
   {
     background-color: #545454;
     color: #FFFFFF;
@@ -40,18 +39,22 @@
     padding-top: 20rem;
     padding-bottom: 20rem;
   }
-  .section.this-is-your-chance {
-    background-color: #5C3D35;
+  .section.sss-birthday a,
+  .section.date-selection a {
     color: #FFFFFF;
   }
   .section.date-selection {
+    background-color: #5C3D35;
+    color: #FFFFFF;
+  }
+  .section.event-location {
     background-image:url({{ url_for('static', filename='img/shop-display3.jpg') }});
     background-size: cover;
     background-repeat: no-repeat;
     background-color: #000000;
     color: #FFFFFF;
   }
-  .section.date-selection a {
+  .section.event-location a {
     color: #FFFFFF;
   }
   .section.landing-footer {
@@ -86,7 +89,7 @@
 </div>
 <div class="row section slight-problem">
   <div class="twelve columns">
-    <h3>a slight problem...</h3>
+    <h3>Why have a meetup?</h3>
   </div>
 </div>
 <div class="row section problem-list">
@@ -103,29 +106,34 @@
     <p>A number of SSSians have never spoken face-to-face!</p>
   </div>
 </div>
-<div class="row section our-solution">
-  <div class="twelve columns">
-    <h3>...and our solution!</h3>
-  </div>
-</div>
 <div class="row section sss-birthday" data-stellar-background-ratio="0.7">
   <div class="one column">
     <i class="fa fa-calendar landing-large-icon"></i>
   </div>
   <div class="ten columns birthday-text">
     <h5>SSS is turning 7 this year. We've come a long way&#x2014;and what better way to celebrate than with the entire SSS population?</h5>
+    <a class="button" href="{{ url_for('register') }}">Join us now</a>
   </div>
 </div>
 <div class="row section this-is-your-chance">
   <div class="twelve columns">
-    <p class="section-description"><em>This is your chance to put faces behind the names of people you've never met, get some publicity and customers for your shop, find inspiration, discuss ideas, make new friends or spend time with the old ones. Register now, and help us reach our goal of bringing everyone in SSS together, for once!</em></p>
+    <p class="section-description">This is your chance to put faces behind the names of people you've never met, get some publicity and customers for your shop, find inspiration, discuss ideas, make new friends or spend time with the old ones. Register now, and help us reach our goal of bringing everyone in SSS together, for once!</p>
+    <a class="button" href="{{ url_for('register') }}">Yes, I'm coming!</a>
   </div>
 </div>
-<div class="row section date-selection" data-stellar-background-ratio="0.5">
+<div class="row section event-location" data-stellar-background-ratio="0.5">
   <div class="twelve columns">
-    <h2>When is the event?</h2>
-    <p class="section-description">We want to make this event accessible to as many people as possible&#x2014;which is why <strong>you</strong> need to help us choose the date! Tell us which dates would work best for you, and we'll try to organize the event in a way that works out best for all.</p>
-    <a href="{{ url_for('vote') }}" class="button">Vote for the date now!</a>
+    <h2>Where is the event?</h2>
+    <p class="section-description">The event is going to be in Bangalore, but the exact location is yet to be fixed. The location will be announced on Friday, 22 April 2016, and we will use your registration contact details to inform you of the place</p>
+    <a class="button" href="{{ url_for('register') }}">Register now</a>
+  </div>
+</div>
+<div class="row section date-selection">
+  <div class="twelve columns">
+    <h3>Date doesn't work for you?</h3>
+    <p>We wanted to make this event accessible to as many people as possible&#x2014;which is why we called upon <strong>you</strong> to help us choose the date! Anybody could vote for whichever dates they found convenient, and a date was selected which would work best for all. That date was: 4 May 2016. However, if that doesn't work for you, you can still cast your vote and we'll try to update it accordingly.</p>
+    <a href="{{ url_for('vote') }}" class="button">Vote for date change</a>
+    <a class="button" href="{{ url_for('register') }}">Register anyway</a>
   </div>
 </div>
 <div class="row section landing-footer">
