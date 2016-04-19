@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}SIC Meetup - Registration{% endblock %}
+{% block extracss %}
+<link href="{{ url_for('static', filename='css/bootstrap-datepicker.standalone.min.css') }}" rel="stylesheet" />
+<style type="text/css">
+#datepicker-good table tr td.active {
+  background: #0b0;
+}
+#datepicker-bad table tr td.active {
+  background: #b00;
+}
+</style>
+{% endblock %}
+{% block content %}
+<h1>SSS Meetup 2016 - Registration</h1>
+<p>Not yet part of SSS? Don't worry: here is your opportunity to join in! Before you register the event, please fill in a few details about how you heard about SSS and why you want to join.</p>
+<p><strong>Already part of SSS?</strong> SSSians can use <a href="{{ url_for('register') }}">this link</a> to register instead</p>
+
+<form action="{{ url_for('register_nonsssian') }}" method="post">
+  {{ form.csrf_token }}
+  <div class="row">
+    <div class="six columns"{% if form.name.errors %} style="color: red;"{% endif %}>
+      {{ form.name.label}}
+      {% if form.name.errors %}<ul style="color: red;">{% for e in form.name.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+      {{ form.name(class="u-full-width") }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="four columns"{% if form.contact.errors %} style="color: red;"{% endif %}>
+      {{ form.contact.label}}
+      {% if form.contact.errors %}<ul style="color: red;">{% for e in form.contact.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+      {{ form.contact(class="u-full-width") }}
+    </div>
+    <div class="four columns">We will use this contact to send you updates on the meetup. We will not use your contact details after the meetup is over (except perhaps to inform you of the next one).</div>
+  </div>
+  <div class="row">
+    <div class="six columns"{% if form.how_find_event.errors %} style="color: red;"{% endif %}>
+      {{ form.how_find_event.label}}
+      {% if form.how_find_event.errors %}<ul style="color: red;">{% for e in form.how_find_event.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+      {{ form.how_find_event(class="u-full-width") }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="six columns"{% if form.how_find_sss.errors %} style="color: red;"{% endif %}>
+      {{ form.how_find_sss.label}}
+      {% if form.how_find_sss.errors %}<ul style="color: red;">{% for e in form.how_find_sss.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+      {{ form.how_find_sss(class="u-full-width") }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="six columns"{% if form.why_interested.errors %} style="color: red;"{% endif %}>
+      {{ form.why_interested.label}}
+      {% if form.why_interested.errors %}<ul style="color: red;">{% for e in form.why_interested.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+      {{ form.why_interested(class="u-full-width") }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="six columns">
+      <p><i>Not too many words, though!</i></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="six columns"{% if form.reference_person.errors %} style="color: red;"{% endif %}>
+      {{ form.reference_person.label}}
+      {% if form.reference_person.errors %}<ul style="color: red;">{% for e in form.reference_person.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+      {{ form.reference_person(class="u-full-width") }}
+    </div>
+  </div>
+  <input type="submit" value="Register" />
+</form>
+
+{% endblock %}

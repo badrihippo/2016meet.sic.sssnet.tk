@@ -15,7 +15,7 @@
 <h1>SSS Meetup 2016 - Registration</h1>
 <p>We're glad to know that you're coming for the Meetup! Don't forget to register so that we are ready for you&hellip;</p>
 
-<p><strong>Don't have a shop yet?</strong> You can join SSS and create one now! <a href="http://sssnet.tk">Learn how <i class="fa fa-arrow-right"></i></a></p>
+<p><strong>Don't have a shop yet?</strong> <a href="{{ url_for('register_nonsssian') }}">Register here</a> instead.</p>
 
 <form action="{{ url_for('register') }}" method="post">
   {{ form.csrf_token }}
