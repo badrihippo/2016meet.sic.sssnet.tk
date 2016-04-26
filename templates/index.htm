@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block extracss %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/responsive-map.css') }}" />
 <style type="text/css">
   .section.intro {
     background-color: #94DDF4;
@@ -24,8 +25,15 @@
   .section.event-details input.submit {
     color: #FFFFFF;
   }
-  .section.slight-problem,
-  .section.problem-list
+  .section.event-venue {
+    background-color: #94DDF4;
+    color: #0000AE;
+  }
+  .section.event-venue a {
+    color: #008000;
+  }
+  .section.problem-list,
+  .section.this-is-your-chance
   {
     background-color: #545454;
     color: #FFFFFF;
@@ -47,14 +55,7 @@
     background-color: #5C3D35;
     color: #FFFFFF;
   }
-  .section.event-location {
-    background-image:url({{ url_for('static', filename='img/shop-display3.jpg') }});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: #000000;
-    color: #FFFFFF;
-  }
-  .section.event-location a {
+  .section.this-is-your-chance a {
     color: #FFFFFF;
   }
   .section.landing-footer {
@@ -70,7 +71,7 @@
 <section class="section intro">
     <h1 class="title">One place. All of SSS.</h2>
     <i class="fa fa-globe landing-large-icon"> </i>
-    <p class="section-description">SSS originally started as a small game between a few friends. Now, as you know, it's become a whole lot more than that. The SSS Idea Circuit is planning to organise a meeting of all SSSians. It will take place in Bengaluru on 4th May (the exact location will be announced this Tuesday).</p>
+    <p class="section-description">SSS originally started as a small game between a few friends. Now, as you know, it's become a whole lot more than that. The SSS Idea Circuit is happy to announce the <b>SSS Meetup 2016</b>—a meeting of all SSSians from across the country! It will take place in the Lightroom Bookstore in Cooke Town, Bengaluru on 4 May 2016.</p>
 </section>
 <div class="row section event-details" data-stellar-background-ratio="0.5">
   <div class="twelve columns">
@@ -87,9 +88,31 @@
     <p><em>Not part of SSS? <a href="{{ url_for('register_nonsssian') }}">Register here</a> instead</em></p>
   </div>
 </div>
-<div class="row section slight-problem">
-  <div class="twelve columns">
-    <h3>Why have a meetup?</h3>
+<div class="row section event-venue">
+  <div class="six columns">
+    <div class="mapWrapper">
+    <iframe src="
+https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.5515698298773!2d77.62035271482227!3d13.00050849083689!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDAwJzAxLjgiTiA3N8KwMzcnMjEuMSJF!5e0!3m2!1sen!2s!4v1461634545840"
+width="600" height="450" frameborder="0" style="border:0"
+allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="six columns" style="text-align: left;">
+    <h4>Lightroom Bookstore</h4>
+    <p class="section-description"><i class="fa fa-map-marker"></i> Cooke Town, Bengaluru</p>
+    <p><i class="fa fa-clock-o"></i> 4 May 2016, 10:30 AM–4:00 PM</p>
+    <h5><i class="fa fa-list-ul"></i> Schedule </h5>
+    <p class="section-description">The plan is to open with presentations in the morning, break for lunch, and then begin trading. A full schedule will be uploaded once it is ready, and a notification will be sent to all those who have registered. <a href="{{ url_for('register') }}">(Click here to register!)</a></p>
+    <p><i><b>Unable to attend the whole event?</b> If you are new to SSS, then we recommended that you come in the  beginning part, as the presentations will help you understand what SSS is. If you are an SSSian then the second half might be more interesting, because you will get to trade and meet people.</i></p>
+  </div>
+</div>
+<div class="row section sss-birthday" data-stellar-background-ratio="0.7">
+  <div class="one column">
+    <i class="fa fa-calendar landing-large-icon"></i>
+  </div>
+  <div class="ten columns birthday-text">
+    <h5>SSS is turning 7 this year. We've come a long way&#x2014;and what better way to celebrate than with the entire SSS population?</h5>
+    <a class="button" href="{{ url_for('register') }}">Join the celebration!</a>
   </div>
 </div>
 <div class="row section problem-list">
@@ -103,38 +126,13 @@
   </div>
   <div class="one-third column">
     <i class="fa fa-user-secret landing-large-icon"></i>
-    <p>A number of SSSians have never spoken face-to-face!</p>
-  </div>
-</div>
-<div class="row section sss-birthday" data-stellar-background-ratio="0.7">
-  <div class="one column">
-    <i class="fa fa-calendar landing-large-icon"></i>
-  </div>
-  <div class="ten columns birthday-text">
-    <h5>SSS is turning 7 this year. We've come a long way&#x2014;and what better way to celebrate than with the entire SSS population?</h5>
-    <a class="button" href="{{ url_for('register') }}">Join us now</a>
+    <p>However, a number of SSSians have never spoken face-to-face!</p>
   </div>
 </div>
 <div class="row section this-is-your-chance">
   <div class="twelve columns">
     <p class="section-description">This is your chance to put faces behind the names of people you've never met, get some publicity and customers for your shop, find inspiration, discuss ideas, make new friends or spend time with the old ones. Register now, and help us reach our goal of bringing everyone in SSS together, for once!</p>
     <a class="button" href="{{ url_for('register') }}">Yes, I'm coming!</a>
-  </div>
-</div>
-<div class="row section event-location" data-stellar-background-ratio="0.5">
-  <div class="twelve columns">
-    <h2>Where is the event?</h2>
-    <p class="section-description">The event is going to be in Bangalore, but the exact location is yet to be fixed. The location will be announced on Tuesday, 26 April 2016, and we will use your registration contact details to inform you of the place.</p>
-    <p>(Yes, we know we said "Sunday", but we ran into some delays so we're going to fix the final location by Tuesday instead).</p>
-    <a class="button" href="{{ url_for('register') }}">Register now</a>
-  </div>
-</div>
-<div class="row section date-selection">
-  <div class="twelve columns">
-    <h3>Date doesn't work for you?</h3>
-    <p>We wanted to make this event accessible to as many people as possible&#x2014;which is why we called upon <strong>you</strong> to help us choose the date! Anybody could vote for whichever dates they found convenient, and a date was selected which would work best for all. That date was: 4 May 2016. However, if that doesn't work for you, you can still cast your vote and we'll try to update it accordingly.</p>
-    <a href="{{ url_for('vote') }}" class="button">Vote for date change</a>
-    <a class="button" href="{{ url_for('register') }}">Register anyway</a>
   </div>
 </div>
 <div class="row section landing-footer">
