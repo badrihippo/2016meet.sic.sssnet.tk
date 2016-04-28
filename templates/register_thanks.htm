@@ -2,7 +2,20 @@
 {% block title %}SIC Meetup - Registration Complete{% endblock %}
 {% block content %}
 <h1>Thanks for registering</h1>
-<p>We're looking forward to seeing you! If you know any more SSSians, consider sending them <a href="{{ url_for('index') }}">this website link</a> so that they can try to come too.</p>
+<p>We're looking forward to seeing you! If you know any more SSSians, consider sending them <a href="{{ url_for('index') }}">this website link</a> so that they can attend, too.</p>
+<p>
+  <div class="a2a_kit a2a_kit_size_32 a2a_default_style" style="display: inline-block;" data-a2a-url="http://2016meet.sic.sssnet.tk" data-a2a-title="SSS Meetup 2016">
+    <a class="a2a_button_email"></a><a class="a2a_button_google_plus"></a><a class="a2a_button_facebook"></a><a class="a2a_button_twitter"></a><a class="a2a_button_whatsapp"></a>
+  </div>
+</p>
 <a href="{{ url_for('index') }}" class="button">Go back to the main page</a>
-
 {% endblock %}
+{% block extrajs -%}
+<script>
+  var a2a_config = a2a_config || {};
+  a2a_config.templates = {
+    twitter: "#SSSians alert! #SSS Meetup in Bengaluru; register now! ${link}"
+  };
+</script>
+<script async src="//static.addtoany.com/menu/page.js"></script>
+{%- endblock %}
