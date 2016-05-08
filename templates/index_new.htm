@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}SSS Meetup 2016{% endblock %}
+{% block extracss %}
+<style type="text/css">
+.header {
+  margin-top: 6rem;
+}
+
+/* Larger than phone */
+@media (min-width: 550px) {
+  .header {
+    margin-top: 18rem;
+  }
+
+</style>
+{% endblock %}
+{% block content %}
+<h1 class="header">The Meetup's over!</h1>
+<p><i>To everyone who attended:</i> thank you for coming!</p>
+<p><i>To those who didn't make it:</i> we'll try to update you on how it went.</p>
+<p><i>What's this all about?</i> If you want to know, the original website is still available for viewing at <a href="{{ url_for('index') }}">this link</a>.</p>
+<p><i>Want to organise another Meetup?</i> The SIC is not planning to host another SSS Meetup anytime soon, but if anyone else is interested in doing it, we can provide assistance. Contact: <a href="mailto:sic@sssnet.tk">sic@sssnet.tk</a>.</p>
+{% endblock %}

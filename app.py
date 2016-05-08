@@ -138,6 +138,13 @@ def get_top_dates():
     return top_dates_processed
 
 @app.route('/')
+def index_new():
+    '''
+    New homepage now that the event is over
+    '''
+    return render_template('index_new.htm')
+
+@app.route('/event/')
 def index():
     form = NameShopContactForm()
     form.action = url_for('vote')
