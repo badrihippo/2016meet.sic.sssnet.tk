@@ -33,6 +33,13 @@
   .section.event-venue a {
     color: #008000;
   }
+  .section.any-questions {
+    background-color: #0000AE;
+    color: #FFFFFF;
+  }
+  .section.any-questions a {
+    color: #ffffff;
+  }
   .section.problem-list,
   .section.this-is-your-chance
   {
@@ -119,6 +126,11 @@ allowfullscreen></iframe>
     </dl>
     <p><i><b>Unable to attend the whole event?</b> For those new to SSS, <b>10:30-12:00</b> is recommended because of the intro and presentations. <b>Any time after that</b> is good for SSSians who want to meet, share, and exchange products.</i></p>
   </div>
+</div>
+<div class="row section any-questions">
+  <p class="section-description">Questions? Contact <a href="mailto:sic@sssnet.tk">sic@sssnet.tk</a></p>
+  <p class="section-description">No questions? Then <a href="{{ url_for('register') }}">register now!</a></p>
+  <a class="button" href="{{ url_for('register') }}">Let's go!</a>
 </div>
 <div class="row section sss-birthday" data-stellar-background-ratio="0.7">
   <div class="one column">
